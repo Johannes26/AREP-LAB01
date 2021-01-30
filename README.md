@@ -1,7 +1,7 @@
 # AREP-LAB01
 Elaborado por Johan Guerrero
 
-#Ejecucion de la aplicación
+# Ejecucion de la aplicación
 
 - 	Primero nos movemos a la raíz del directorio del proyecto
 - 	Limpiamos e instalamos dependencias con *mvn clean install*
@@ -10,12 +10,12 @@ Elaborado por Johan Guerrero
 
 Recuerde que por defecto está ejecutando la prueba2 si desea cambiarla vaya al directorio de calculator y cambie el path del archivo
 
-#Documentación
+# Documentación
 
 -	Puede generar la documentación ejecutando el siguiente comando *mvn javadoc:javadoc*
 -	Dirigase a la carpeta target/site/apidocs para encontrar la documentación
 
-#Ejecucion de pruebas unitarias
+# Ejecucion de pruebas unitarias
 
 -	Puede ejecutar las pruebas con el comando *mvn test*
 
