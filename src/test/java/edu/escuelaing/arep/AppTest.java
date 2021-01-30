@@ -9,9 +9,13 @@ import org.junit.Test;
  */
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+	public Calculator calculator;
+    
+	public AppTest(){
+		calculator = Calculator.getCalculator();
+	}
+	
+	
     @Test
     public void shouldAnswerWithTrue()
     {
