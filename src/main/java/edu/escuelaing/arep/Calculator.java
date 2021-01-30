@@ -1,6 +1,7 @@
 package edu.escuelaing.arep;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,7 @@ public class Calculator {
 		LinkedList<Double> lines = new LinkedList<Double>();
 		String line;
 		try {
+
 			BufferedReader buffered = new BufferedReader(new FileReader(path));
 			while ((line = buffered.readLine()) != null) {
 				lines.push(Double.parseDouble(line));
@@ -71,13 +73,14 @@ public class Calculator {
 	 * @param list datos de numeros a procesar
 	 * @return media de los datos
 	 */
-	private Double mean(LinkedList<Double> list) {
-		Double value = 0.0;
+	private double mean(LinkedList<Double> list) {
+
+		double value = 0.0;
 		for (int x = 0; x < list.size(); x++) {
 			value += list.getIndexOf(x);
 		}
 		value = value / list.size();
-		return value;
+		return Math.round(value * 100.0) / 100.0;
 	}
 
 	/**
@@ -88,21 +91,26 @@ public class Calculator {
 	 * @return desviacion de los datos
 	 */
 
-	private Double deviation(LinkedList<Double> list, Double mean) {
-		Double value = 0.0;
+	private double deviation(LinkedList<Double> list, Double mean) {
+		double value = 0.0;
 
 		for (int x = 0; x < list.size(); x++) {
-			value += Math.pow((list.get(x) - mean), 2);
+			value += Math.pow((list.getIndexOf(x) - mean), 2);
 		}
 		value = Math.sqrt(value / (list.size() - 1));
-		return value;
+		return Math.round(value * 100.0) / 100.0;
 	}
-	
-	public static void main(String a[]){
+
+	public static void main(String a[]) {
 		calculator = Calculator.getCalculator();
-		ArrayList<Double> result = calculator.Execute("./src/test/java/edu/escuelaing/arep/Prueba1.txt");
-		System.out.println(result.get(0));
-		System.out.println(result.get(1));
+		String path = "./src/test/java/edu/escuelaing/arep/Prueba2";
+		File archivo = new File(path);
+		if (archivo.exists()) {
+			ArrayList<Double> result = calculator.Execute(path);
+			System.out.println(result.get(0));
+			System.out.println(result.get(1));
+		}
+
 	}
 
 }

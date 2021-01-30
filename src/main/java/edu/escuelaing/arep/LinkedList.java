@@ -25,7 +25,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 	@Override
 	public void addFirst(E e) {
 		Node<E> newHead = new Node<E>(e);
-		if (head == null) {
+		if (head.getPrevious() == null) {
 			head.setNext(newHead);
 			head.setPrevious(newHead);
 		} else {
@@ -44,7 +44,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 	@Override
 	public void addLast(E e) {
 		Node<E> newTail = new Node<E>(e);
-		if (head == null) {
+		if (head.getNext() == null) {
 			head.setNext(newTail);
 			head.setPrevious(newTail);
 		} else {
@@ -141,9 +141,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 	@Override
 	public E remove() {
 
-		Node<E> OldHead = head.getNext();
+		Node<E> OldHead = head.getPrevious();
 		if (OldHead != null) {
-			Node newHead = OldHead.getPrevious();
+			Node newHead = OldHead.getNext();
+			newHead.setPrevious(null);
 			head.setPrevious(newHead);
 		}
 		return OldHead.getValue();
@@ -200,13 +201,14 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 
 	/**
 	 * muestra la cantidad de elementos en la lista
-	 * @return 
+	 * 
+	 * @return
 	 */
 	@Override
 	public int size() {
 		int cont = 0;
-		Node<E> nodeFind = head.getNext();
-		while (nodeFind == null) {
+		Node<E> nodeFind = head.getPrevious();
+		while (nodeFind != null) {
 			cont++;
 			nodeFind = nodeFind.getNext();
 		}
@@ -220,7 +222,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>,
 	 * @return elemento que se busca
 	 */
 	public E getIndexOf(int index) {
-		Node<E> nodeFind = head.getNext();
+		Node<E> nodeFind = head.getPrevious();
 		int i = 0;
 		while (index != i || nodeFind == null) {
 			i++;
